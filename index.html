@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sahil Gulfam — Available for freelance & contract work | Sahil Soft</title>
+  <meta name="description" content="Sahil Soft: Powering your e-commerce success with 3D interactive logistics, USA/UK Ready-to-Ship Inventory, eBay/Walmart/TikTok Shop VAs, and LLC formation.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C9A84C' stroke-width='2'><path d='M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z'/><line x1='3' y1='6' x2='21' y2='6'/><path d='M16 10a4 4 0 0 1-8 0'/></svg>">
+
+  <!-- Google Fonts: Inter, Playfair Display, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#0D0D12',
+            'obsidian-light': '#16161F',
+            'obsidian-surface': '#1C1C26',
+            champagne: '#C9A84C',
+            'champagne-light': '#E8CE84',
+            'champagne-dark': '#A38435',
+            ivory: '#FAF8F5',
+            'ivory-muted': '#B8B5B0',
+            slate: '#2A2A35',
+            'slate-border': '#353545',
+            'card-bg': '#13131A',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          borderRadius: {
+            '2rem': '2rem',
+            '2.5rem': '2.5rem',
+            '3rem': '3rem',
+            '4rem': '4rem',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Three.js 3D WebGL Engine CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GSAP 3 and ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body class="home-page bg-obsidian text-ivory font-sans antialiased overflow-x-hidden selection:bg-champagne selection:text-obsidian relative">
+
+  <!-- ==================== 3D WEBGL FULL-SCREEN CANVAS ==================== -->
+  <canvas id="webgl-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+  <!-- SVG Noise Filter Definition -->
+  <svg class="hidden" aria-hidden="true">
+    <filter id="noiseFilter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </svg>
+
+  <!-- Global Noise Overlay Layer (0.05 opacity) -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Ambient Luxury Glow Orbs -->
+  <div class="fixed top-[-10vw] left-[-10vw] w-[45vw] h-[45vw] rounded-full bg-champagne/5 blur-[160px] pointer-events-none z-0"></div>
+  <div class="fixed bottom-[-15vw] right-[-10vw] w-[50vw] h-[50vw] rounded-full bg-champagne/5 blur-[180px] pointer-events-none z-0"></div>
+
+  <!-- ==================== A. NAVBAR: "The Floating Island" ==================== -->
+  <header class="fixed top-6 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+    <nav id="navbar" class="pointer-events-auto w-full max-w-5xl px-5 py-3 rounded-full border border-white/10 bg-obsidian/40 backdrop-blur-md transition-all duration-500 flex items-center justify-between shadow-2xl">
+      <!-- Brand Logo -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full border border-champagne/40 bg-champagne/10 overflow-hidden transition-all duration-300 group-hover:scale-105 group-hover:border-champagne shadow-[0_0_15px_rgba(201,168,76,0.3)]">
+          <img src="./sahil-gulfam.png" alt="Sahil Gulfam" class="w-full h-full object-cover object-top">
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-1.5">
+            <span class="text-xs font-mono tracking-widest uppercase text-ivory font-semibold group-hover:text-champagne transition-colors">Sahil Soft</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden md:flex items-center gap-6">
+        <a href="index.html" class="nav-link text-xs font-mono uppercase tracking-wider text-ivory-muted hover:text-champagne transition-all duration-200 hover:-translate-y-[1px]">Home</a>
+        <a href="about.html" class="nav-link text-xs font-mono uppercase tracking-wider text-ivory-muted hover:text-champagne transition-all duration-200 hover:-translate-y-[1px]">About Us</a>
+        <a href="ecommerce-services.html" class="nav-link text-xs font-mono uppercase tracking-wider text-ivory-muted hover:text-champagne transition-all duration-200 hover:-translate-y-[1px]">E-commerce Services</a>
+        <a href="it-services.html" class="nav-link text-xs font-mono uppercase tracking-wider text-ivory-muted hover:text-champagne transition-all duration-200 hover:-translate-y-[1px]">IT Services</a>
+        <a href="contact.html" class="nav-link text-xs font-mono uppercase tracking-wider text-ivory-muted hover:text-champagne transition-all duration-200 hover:-translate-y-[1px]">Contact Us</a>
+      </div>
+
+      <!-- Action Button: Direct WhatsApp Chat -->
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/923704443223" target="_blank" rel="noopener noreferrer" class="magnetic-btn group relative overflow-hidden rounded-full px-5 py-2 text-xs font-mono uppercase tracking-wider font-semibold border border-champagne/60 text-obsidian bg-champagne transition-all duration-300 shadow-[0_0_20px_rgba(201,168,76,0.25)] flex items-center">
+          <span class="relative z-10 flex items-center gap-1.5 transition-colors duration-300 group-hover:text-champagne">
+            <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+            <span>WhatsApp</span>
+            <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+          </span>
+          <span class="btn-slide-bg bg-obsidian"></span>
+        </a>
+
+        <!-- Mobile Menu Trigger -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-full border border-white/10 text-ivory hover:text-champagne hover:border-champagne/40 transition-colors" aria-label="Toggle Navigation">
+          <i data-lucide="menu" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="fixed inset-0 z-40 bg-obsidian/95 backdrop-blur-2xl flex flex-col justify-center items-center gap-6 px-8 transition-all duration-500 opacity-0 pointer-events-none">
+    <button id="close-mobile-menu" class="absolute top-8 right-8 p-3 rounded-full border border-white/10 text-ivory" aria-label="Close menu">
+      <i data-lucide="x" class="w-6 h-6"></i>
+    </button>
+    <span class="text-xs font-mono tracking-widest text-champagne uppercase">// NAVIGATION DIRECTORY</span>
+    <a href="index.html" class="mobile-nav-link text-2xl font-serif italic text-ivory hover:text-champagne transition-colors">Home</a>
+    <a href="about.html" class="mobile-nav-link text-2xl font-serif italic text-ivory hover:text-champagne transition-colors">About Us</a>
+    <a href="ecommerce-services.html" class="mobile-nav-link text-2xl font-serif italic text-ivory hover:text-champagne transition-colors">E-commerce Services</a>
+    <a href="it-services.html" class="mobile-nav-link text-2xl font-serif italic text-ivory hover:text-champagne transition-colors">IT Services</a>
+    <a href="contact.html" class="mobile-nav-link text-2xl font-serif italic text-ivory hover:text-champagne transition-colors">Contact Us</a>
+    <a href="https://wa.me/923704443223" target="_blank" rel="noopener noreferrer" class="mt-4 px-8 py-3 rounded-full bg-champagne text-obsidian font-mono text-sm uppercase tracking-wider font-semibold flex items-center gap-2">
+      <i data-lucide="message-circle" class="w-4 h-4"></i>
+      <span>Chat on WhatsApp</span>
+    </a>
+  </div>
+
+  <!-- ==================== B. HERO SECTION: "The Opening Shot" with 3D Holographic Sahil Stage ==================== -->
+  <section id="hero" class="relative min-h-[100dvh] w-full flex items-center justify-center overflow-hidden pt-28 pb-16 md:pb-20 px-6 md:px-12 lg:px-20 z-10">
+    <div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      
+      <!-- LEFT COLUMN: Typography, Badges & CTAs (7 cols) -->
+      <div class="lg:col-span-7 flex flex-col items-start gap-6 z-10">
+        
+        <!-- Status Tag -->
+        <div class="hero-item hero-status inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-champagne/30 bg-champagne/10 backdrop-blur-md">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+          </span>
+          <span class="text-[11px] font-mono uppercase tracking-widest text-champagne font-bold">Sahil Soft • Available for freelance &amp; contract work</span>
+        </div>
+
+        <!-- Typography Pattern: [Aspirational noun] meets / [Precision word]. -->
+        <div class="hero-item flex flex-col gap-1 md:gap-2">
+          <h1 class="text-4xl sm:text-6xl md:text-7xl font-sans font-extrabold uppercase tracking-tight text-ivory leading-[1.02] hero-name">
+            <span class="text-champagne">Sahil</span> <span class="text-ivory font-semibold">Gulfam</span>
+          </h1>
+          <div class="hero-expert text-3xl sm:text-4xl md:text-5xl font-serif italic text-champagne tracking-tight leading-none drop-shadow-[0_10px_35px_rgba(201,168,76,0.4)] whitespace-nowrap">
+            E-Commerce &amp; IT Expert.
+          </div>
+        </div>
+
+        <!-- Mission Statement -->
+        <p class="hero-item max-w-2xl text-base sm:text-lg text-ivory-muted font-normal leading-relaxed">
+          E-commerce specialist for UK &amp; USA marketplaces—supporting Walmart, TikTok Shop, eBay, Etsy and Temu with virtual assistance and ready-to-ship inventory. I also build premium websites, AI automation and custom software solutions.
+        </p>
+
+        <!-- Hero Telemetry Metric Strip -->
+        <div class="hero-item pt-6 border-t border-white/10 w-full grid grid-cols-2 sm:grid-cols-4 gap-6">
+          <div>
+            <div class="text-2xl sm:text-3xl font-mono font-bold text-ivory">USA<span class="text-champagne"> & UK</span></div>
+            <div class="text-[10px] font-mono uppercase tracking-widest text-ivory-muted">Walmart · TikTok Shop · eBay · Etsy · Temu</div>
+          </div>
+          <div>
+            <div class="text-2xl sm:text-3xl font-mono font-bold text-ivory">100<span class="text-champagne">%</span></div>
+            <div class="text-[10px] font-mono uppercase tracking-widest text-ivory-muted">Brand Approval Rate</div>
+          </div>
+          <div>
+            <div class="text-2xl sm:text-3xl font-mono font-bold text-ivory">2-in-1</div>
+            <div class="text-[10px] font-mono uppercase tracking-widest text-ivory-muted">E-commerce &amp; IT Services</div>
+          </div>
+          <div>
+            <div class="text-2xl sm:text-3xl font-mono font-bold text-ivory">24/7</div>
+            <div class="text-[10px] font-mono uppercase tracking-widest text-ivory-muted">Available to support you, anytime</div>
+          </div>
+        </div>
+
+        <!-- Mobile JavaScript returns the workflow card to this exact desktop location. -->
+        <span id="hero-workflow-anchor" hidden></span>
+
+        <!-- AI workflow capability: a focused crystal card beneath the hero metrics -->
+        <div class="hero-item hero-ai-workflow" aria-label="AI workflow expertise">
+          <div class="ai-workflow-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M54.4 22.791C52.981 22.792 51.601 22.321 50.479 21.452C49.357 20.583 48.555 19.365 48.2 17.991H40.866C40.109 17.991 39.376 18.26 38.798 18.75C38.22 19.239 37.835 19.918 37.71 20.665L37.446 22.245C37.204 23.696 36.469 25.018 35.366 25.991C36.47 26.964 37.204 28.288 37.446 29.739L37.71 31.317C37.835 32.064 38.22 32.743 38.798 33.233C39.376 33.722 40.109 33.991 40.866 33.991H41.802C42.194 32.485 43.121 31.173 44.409 30.3C45.698 29.428 47.261 29.055 48.805 29.251C50.349 29.447 51.768 30.199 52.798 31.366C53.828 32.533 54.397 34.035 54.4 35.591C54.403 37.151 53.836 38.658 52.806 39.83C51.776 41.001 50.354 41.756 48.806 41.953C47.259 42.149 45.693 41.774 44.403 40.897C43.112 40.02 42.187 38.702 41.8 37.191H40.866C39.351 37.191 37.886 36.653 36.73 35.674C35.574 34.695 34.803 33.337 34.554 31.843L34.29 30.265C34.166 29.518 33.78 28.839 33.202 28.35C32.624 27.86 31.891 27.591 31.134 27.591H28.598C28.243 28.965 27.441 30.181 26.319 31.05C25.197 31.919 23.819 32.39 22.4 32.39C20.981 32.39 19.603 31.919 18.481 31.05C17.359 30.181 16.557 28.965 16.202 27.591H12.598C12.206 29.097 11.279 30.409 9.991 31.281C8.702 32.154 7.139 32.527 5.595 32.331C4.051 32.135 2.632 31.383 1.602 30.216C.572 29.049 .003 27.547 0 25.991C-.003 24.431 .564 22.924 1.594 21.752C2.624 20.58 4.046 19.825 5.594 19.628C7.141 19.432 8.707 19.807 9.997 20.684C11.288 21.561 12.213 22.879 12.6 24.391H16.2C16.554 23.016 17.355 21.797 18.477 20.927C19.6 20.057 20.98 19.585 22.4 19.585C23.82 19.585 25.2 20.057 26.323 20.927C27.445 21.797 28.246 23.016 28.6 24.391H31.134C31.891 24.391 32.624 24.122 33.202 23.633C33.78 23.143 34.166 22.464 34.29 21.717L34.554 20.137C34.803 18.643 35.574 17.286 36.73 16.307C37.886 15.328 39.351 14.791 40.866 14.791H48.202C48.594 13.285 49.521 11.973 50.809 11.1C52.098 10.228 53.661 9.855 55.205 10.051C56.749 10.247 58.168 10.999 59.198 12.166C60.228 13.333 60.797 14.835 60.8 16.391C60.8 18.088 60.126 19.716 58.925 20.917C57.725 22.117 56.097 22.791 54.4 22.791Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div>
+            <div class="ai-workflow-kicker">Let’s Automate Your Workflow</div>
+            <div class="ai-workflow-title">AI Tools <span>&amp;</span> AI Automation / Workflow</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: 3D Holographic Stage for Sahil Gulfam (5 cols) -->
+      <div class="lg:col-span-5 flex items-center justify-center relative py-6">
+        
+        <!-- Glowing Holographic Backing Portal & Orbit Rings -->
+        <div class="absolute w-80 h-80 sm:w-[420px] sm:h-[420px] rounded-full bg-gradient-to-tr from-champagne/25 via-champagne/10 to-transparent blur-3xl pointer-events-none animate-pulse-slow"></div>
+        <div class="absolute w-72 h-72 sm:w-[380px] sm:h-[380px] rounded-full border border-champagne/30 pointer-events-none animate-spin-slow" style="border-style: dashed;"></div>
+        <div class="absolute w-60 h-60 sm:w-[320px] sm:h-[320px] rounded-full border border-champagne/20 pointer-events-none" style="border-style: dotted;"></div>
+
+        <!-- 3D Tilting Portrait Stage Container -->
+        <div id="hero-portrait-stage" class="relative z-20 w-full max-w-[340px] sm:max-w-[390px] rounded-3rem border border-champagne/40 bg-gradient-to-b from-card-bg/85 to-obsidian/95 backdrop-blur-2xl p-4 sm:p-5 shadow-[0_25px_70px_rgba(0,0,0,0.85)] preserve-3d group transition-transform duration-200">
+          
+          <!-- Image Cutout Display with Shadow and Bottom Blend -->
+          <div class="relative w-full overflow-hidden rounded-2.5rem border border-white/10 bg-gradient-to-b from-[#181826]/90 to-[#0c0c14]">
+            <img 
+              id="hero-sahil-img"
+              src="./sahil-cutout.png" 
+              alt="Sahil Gulfam — Founder of Sahil Soft & E-Commerce Growth Specialist" 
+              class="w-full h-auto object-cover object-top filter drop-shadow-[0_15px_30px_rgba(201,168,76,0.35)] transition-transform duration-300"
+              style="mask-image: linear-gradient(to bottom, black 85%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);"
+            />
+            
+            <!-- Floating Nameplate Banner Inside Portrait Base -->
+            <div class="absolute bottom-3 inset-x-3 p-3 rounded-2xl bg-obsidian/90 backdrop-blur-md border border-champagne/40 flex items-center justify-between shadow-xl tilt-elem-md">
+              <div>
+                <div class="text-xs font-mono font-bold text-ivory uppercase tracking-wider">Sahil Gulfam</div>
+                <div class="text-[9px] font-mono text-champagne">FOUNDER • SAHIL SOFT</div>
+              </div>
+              <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-950/70 border border-emerald-500/50 text-[9px] font-mono text-emerald-400">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                <span class="font-semibold">ONLINE 24/7</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating 3D Badge 1: Skills -->
+          <div class="floating-badge-1 absolute -top-4 -left-4 sm:-left-6 px-3.5 py-2 rounded-2xl bg-obsidian/95 border border-champagne/60 backdrop-blur-2xl shadow-[0_15px_35px_rgba(0,0,0,0.9)] flex items-center gap-2.5 z-30 select-none">
+            <div class="w-7 h-7 rounded-xl bg-champagne/15 border border-champagne/40 flex items-center justify-center text-champagne text-xs">
+              <i data-lucide="layers-3" class="w-3.5 h-3.5"></i>
+            </div>
+            <div>
+              <div class="text-[9px] font-mono text-ivory-muted uppercase tracking-widest">Skills</div>
+              <div class="text-[12px] font-mono font-bold text-white">E-commerce</div>
+              <div class="text-[12px] font-mono font-bold text-white">IT Services</div>
+            </div>
+          </div>
+
+          <!-- Floating 3D Badge 2: Bottom-Right (100% Brand Ungating) -->
+          <div class="floating-badge-2 absolute -bottom-4 -right-4 sm:-right-6 px-3.5 py-2 rounded-2xl bg-obsidian/95 border border-emerald-500/60 backdrop-blur-2xl shadow-[0_15px_35px_rgba(0,0,0,0.9)] flex items-center gap-2.5 z-30 select-none">
+            <div class="w-7 h-7 rounded-xl bg-emerald-500/15 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-xs">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+            </div>
+            <div>
+              <div class="text-[8px] font-mono text-emerald-400 uppercase tracking-widest">VERIFIED</div>
+              <div class="text-[11px] font-mono font-bold text-ivory">100% Trusted</div>
+              <div class="text-[9px] font-mono text-emerald-400">Best Services</div>
+            </div>
+          </div>
+
+          <!-- Floating 3D Badge 3: Top-Right (Multi-Platform Management) -->
+          <div class="floating-badge-3 absolute top-12 -right-3 sm:-right-5 px-3 py-1.5 rounded-xl bg-obsidian/95 border border-white/20 backdrop-blur-2xl shadow-lg flex items-center gap-2 z-30 select-none">
+            <i data-lucide="sparkles" class="w-3 h-3 text-champagne"></i>
+            <span class="text-[9px] font-mono text-ivory font-semibold leading-relaxed">TikTok • eBay • Walmart<br><span class="text-champagne">Temu • Etsy</span></span>
+          </div>
+
+        </div>
+
+        <!-- Compact AI expertise popup, deliberately aligned with the portrait edge -->
+        <div class="hero-ai-popup" aria-label="AI tools and automation expertise">
+          <div class="ai-workflow-icon ai-popup-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M54.4 22.791C52.981 22.792 51.601 22.321 50.479 21.452C49.357 20.583 48.555 19.365 48.2 17.991H40.866C40.109 17.991 39.376 18.26 38.798 18.75C38.22 19.239 37.835 19.918 37.71 20.665L37.446 22.245C37.204 23.696 36.469 25.018 35.366 25.991C36.47 26.964 37.204 28.288 37.446 29.739L37.71 31.317C37.835 32.064 38.22 32.743 38.798 33.233C39.376 33.722 40.109 33.991 40.866 33.991H41.802C42.194 32.485 43.121 31.173 44.409 30.3C45.698 29.428 47.261 29.055 48.805 29.251C50.349 29.447 51.768 30.199 52.798 31.366C53.828 32.533 54.397 34.035 54.4 35.591C54.403 37.151 53.836 38.658 52.806 39.83C51.776 41.001 50.354 41.756 48.806 41.953C47.259 42.149 45.693 41.774 44.403 40.897C43.112 40.02 42.187 38.702 41.8 37.191H40.866C39.351 37.191 37.886 36.653 36.73 35.674C35.574 34.695 34.803 33.337 34.554 31.843L34.29 30.265C34.166 29.518 33.78 28.839 33.202 28.35C32.624 27.86 31.891 27.591 31.134 27.591H28.598C28.243 28.965 27.441 30.181 26.319 31.05C25.197 31.919 23.819 32.39 22.4 32.39C20.981 32.39 19.603 31.919 18.481 31.05C17.359 30.181 16.557 28.965 16.202 27.591H12.598C12.206 29.097 11.279 30.409 9.991 31.281C8.702 32.154 7.139 32.527 5.595 32.331C4.051 32.135 2.632 31.383 1.602 30.216C.572 29.049 .003 27.547 0 25.991C-.003 24.431 .564 22.924 1.594 21.752C2.624 20.58 4.046 19.825 5.594 19.628C7.141 19.432 8.707 19.807 9.997 20.684C11.288 21.561 12.213 22.879 12.6 24.391H16.2C16.554 23.016 17.355 21.797 18.477 20.927C19.6 20.057 20.98 19.585 22.4 19.585C23.82 19.585 25.2 20.057 26.323 20.927C27.445 21.797 28.246 23.016 28.6 24.391H31.134C31.891 24.391 32.624 24.122 33.202 23.633C33.78 23.143 34.166 22.464 34.29 21.717L34.554 20.137C34.803 18.643 35.574 17.286 36.73 16.307C37.886 15.328 39.351 14.791 40.866 14.791H48.202C48.594 13.285 49.521 11.973 50.809 11.1C52.098 10.228 53.661 9.855 55.205 10.051C56.749 10.247 58.168 10.999 59.198 12.166C60.228 13.333 60.797 14.835 60.8 16.391C60.8 18.088 60.126 19.716 58.925 20.917C57.725 22.117 56.097 22.791 54.4 22.791Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div>
+            <div class="hero-ai-popup-kicker">Expert</div>
+            <div class="hero-ai-popup-title">AI Tools</div>
+            <div class="hero-ai-popup-subtitle">AI Automation</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== LIVE INVENTORY QUICK ACCESS CARDS (3D TILT) ==================== -->
+  <section id="inventory" class="relative py-16 px-6 md:px-16 lg:px-24 bg-[#0a0a0f]/80 backdrop-blur-md border-t border-b border-champagne/20 z-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- SPREADSHEET CARD (3D Tilt) -->
+        <a href="https://docs.google.com/spreadsheets/d/1SwU6JguEKflX6APbEAJDp5er2j0IICl3e0Gcm_dxNsA/edit?usp=sharing" target="_blank" rel="noopener noreferrer" data-3d-card class="tilt-card group rounded-2.5rem bg-card-bg/90 p-6 border border-champagne/30 hover:border-champagne transition-all duration-300 flex items-center justify-between shadow-2xl relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="flex items-center gap-4 tilt-elem-md">
+            <div class="w-12 h-12 rounded-2xl bg-champagne/10 border border-champagne/30 flex items-center justify-center text-champagne group-hover:scale-110 transition-transform">
+              <i data-lucide="package-check" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <div class="text-[10px] font-mono text-champagne uppercase tracking-wider font-bold">MASTER SPREADSHEET</div>
+              <div class="text-base font-sans font-bold text-ivory">USA & UK Stock Catalog</div>
+              <div class="text-xs font-mono text-ivory-muted">Live units & prices updated daily</div>
+            </div>
+          </div>
+          <i data-lucide="external-link" class="w-5 h-5 text-champagne/60 group-hover:text-champagne transition-colors tilt-elem-sm"></i>
+        </a>
+
+        <!-- USA INVENTORY GROUP (3D Tilt) -->
+        <a href="https://chat.whatsapp.com/L559BTDCm6J0y7zYYCxquf" target="_blank" rel="noopener noreferrer" data-3d-card class="tilt-card group rounded-2.5rem bg-card-bg/90 p-6 border border-emerald-500/30 hover:border-emerald-400 transition-all duration-300 flex items-center justify-between shadow-2xl relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="flex items-center gap-4 tilt-elem-md">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
+              <i data-lucide="message-circle" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <div class="text-[10px] font-mono text-emerald-400 uppercase tracking-wider font-bold">USA Community</div>
+              <div class="text-base font-sans font-bold text-ivory">USA Inventory WhatsApp</div>
+              <div class="text-xs font-mono text-ivory-muted">Immediate stock drops & updates</div>
+            </div>
+          </div>
+          <i data-lucide="arrow-up-right" class="w-5 h-5 text-emerald-400/60 group-hover:text-emerald-400 transition-colors tilt-elem-sm"></i>
+        </a>
+
+        <!-- UK INVENTORY GROUP (3D Tilt) -->
+        <a href="https://chat.whatsapp.com/DI74ZlTEhRjAI8n4OhMgO8" target="_blank" rel="noopener noreferrer" data-3d-card class="tilt-card group rounded-2.5rem bg-card-bg/90 p-6 border border-blue-500/30 hover:border-blue-400 transition-all duration-300 flex items-center justify-between shadow-2xl relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="flex items-center gap-4 tilt-elem-md">
+            <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
+              <i data-lucide="message-circle" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <div class="text-[10px] font-mono text-blue-400 uppercase tracking-wider font-bold">UK Community</div>
+              <div class="text-base font-sans font-bold text-ivory">UK Inventory WhatsApp</div>
+              <div class="text-xs font-mono text-ivory-muted">Immediate Stock Drop and Update</div>
+            </div>
+          </div>
+          <i data-lucide="arrow-up-right" class="w-5 h-5 text-blue-400/60 group-hover:text-blue-400 transition-colors tilt-elem-sm"></i>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== COMPLETE SERVICES CATALOG (3D TILT CARDS) ==================== -->
+  <section id="services" class="home-detail relative py-28 px-6 md:px-16 lg:px-24 bg-obsidian/85 backdrop-blur-sm z-10">
+    <div class="max-w-7xl mx-auto flex flex-col gap-16">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
+        <div>
+          <div class="text-xs font-mono uppercase tracking-widest text-champagne mb-2">// OUR CAPABILITIES</div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-sans font-bold uppercase tracking-tight text-ivory">
+            <span class="font-serif italic text-champagne">E-commerce</span> Services
+          </h2>
+        </div>
+        <p class="max-w-md text-sm text-ivory-muted font-normal leading-relaxed">
+          Build a safer, stronger marketplace operation with expert support, genuine workflows and growth strategies tailored to your business.
+        </p>
+      </div>
+
+      <!-- 12 Key Service Cards Grid with 3D Tilt -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- 1. VA Service -->
+        <div data-3d-card class="tilt-card p-7 rounded-2.5rem bg-card-bg/90 border border-white/10 hover:border-champagne/40 transition-all duration-300 flex flex-col justify-between group shadow-xl relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="tilt-elem-md">
+            <div class="w-10 h-10 rounded-2xl bg-champagne/10 border border-champagne/30 flex items-center justify-center text-champagne mb-4 group-hover:scale-110 transition-transform">
+              <i data-lucide="users" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-sans font-bold text-ivory mb-2">Virtual Assistant (VA)</h3>
+            <p class="text-xs font-mono text-ivory-muted leading-relaxed">
+              Expert daily management for <strong>eBay, Walmart & TikTok Shop</strong>. Listing optimization, customer support, repricing, and order processing.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-champagne tilt-elem-sm">
+            <span>eBay • Walmart • TikTok</span>
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- 2. Invoice Creation -->
+        <div data-3d-card class="tilt-card p-7 rounded-2.5rem bg-card-bg/90 border border-white/10 hover:border-champagne/40 transition-all duration-300 flex flex-col justify-between group shadow-xl relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="tilt-elem-md">
+            <div class="w-10 h-10 rounded-2xl bg-champagne/10 border border-champagne/30 flex items-center justify-center text-champagne mb-4 group-hover:scale-110 transition-transform">
+              <i data-lucide="file-check" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-sans font-bold text-ivory mb-2">Valid Invoice 🧾 Creation</h3>
+            <p class="text-xs font-mono text-ivory-muted leading-relaxed">
+              Authentic distributor and supplier invoices crafted to verify accounts, pass marketplace audits, and resolve inauthentic claims.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-champagne tilt-elem-sm">
+            <span>Audit-Ready Format</span>
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- 3. USA Ready Inventory -->
+        <div data-3d-card class="tilt-card p-7 rounded-2.5rem bg-card-bg/95 border border-champagne/40 hover:border-champagne transition-all duration-300 flex flex-col justify-between group bg-gradient-to-b from-card-bg to-[#1c1813] shadow-[0_15px_40px_rgba(201,168,76,0.15)] relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="tilt-elem-md">
+            <div class="w-10 h-10 rounded-2xl bg-champagne/20 border border-champagne flex items-center justify-center text-champagne mb-4 group-hover:scale-110 transition-transform">
+              <i data-lucide="package" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-sans font-bold text-champagne mb-2">USA Ready to Ship 📦 Inventory</h3>
+            <p class="text-xs font-mono text-ivory-muted leading-relaxed">
+              Stock physically stored in USA warehouses ready for immediate dispatch. Fast 2-3 day customer delivery with guaranteed availability.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-champagne/20 flex items-center justify-between text-[10px] font-mono text-champagne font-bold tilt-elem-sm">
+            <span>Live Sheet Available</span>
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- 4. USPS Shipping Labels -->
+        <div data-3d-card class="tilt-card p-7 rounded-2.5rem bg-card-bg/90 border border-white/10 hover:border-champagne/40 transition-all duration-300 flex flex-col justify-between group shadow-xl relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="tilt-elem-md">
+            <div class="w-10 h-10 rounded-2xl bg-champagne/10 border border-champagne/30 flex items-center justify-center text-champagne mb-4 group-hover:scale-110 transition-transform">
+              <i data-lucide="tag" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-sans font-bold text-ivory mb-2">USPS Shipping Labels 🏷️</h3>
+            <p class="text-xs font-mono text-ivory-muted leading-relaxed">
+              Discounted commercial rate USPS Priority & Ground Advantage labels generated with instant digital barcode and fast tracking.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-champagne tilt-elem-sm">
+            <span>Priority & Ground</span>
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- 5. Tracking Service -->
+        <div data-3d-card class="tilt-card p-7 rounded-2.5rem bg-card-bg/90 border border-white/10 hover:border-champagne/40 transition-all duration-300 flex flex-col justify-between group shadow-xl relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="tilt-elem-md">
+            <div class="w-10 h-10 rounded-2xl bg-champagne/10 border border-champagne/30 flex items-center justify-center text-champagne mb-4 group-hover:scale-110 transition-transform">
+              <i data-lucide="map-pin" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-sans font-bold text-ivory mb-2">USA & UK Valid Tracking</h3>
+            <p class="text-xs font-mono text-ivory-muted leading-relaxed">
+              Legitimate real-time tracking numbers for eBay, TikTok Shop, and Walmart to safeguard account health and order delivery compliance.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-champagne tilt-elem-sm">
+            <span>Real Carrier Scans</span>
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- 6. High-Speed Dedicated VPS -->
+        <div data-3d-card class="tilt-card p-7 rounded-2.5rem bg-card-bg/90 border border-white/10 hover:border-champagne/40 transition-all duration-300 flex flex-col justify-between group shadow-xl relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="tilt-elem-md">
+            <div class="w-10 h-10 rounded-2xl bg-champagne/10 border border-champagne/30 flex items-center justify-center text-champagne mb-4 group-hover:scale-110 transition-transform">
+              <i data-lucide="server" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-sans font-bold text-ivory mb-2">Dedicated VPS Hosting</h3>
+            <p class="text-xs font-mono text-ivory-muted leading-relaxed">
+              Clean residential IP Virtual Private Servers located in the US and UK. Protects store logins and prevents linked account suspensions.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-champagne tilt-elem-sm">
+            <span>Clean Residential IPs</span>
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- 7. Brand Approval -->
+        <div data-3d-card class="tilt-card p-7 rounded-2.5rem bg-card-bg/90 border border-white/10 hover:border-champagne/40 transition-all duration-300 flex flex-col justify-between group shadow-xl relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="tilt-elem-md">
+            <div class="w-10 h-10 rounded-2xl bg-champagne/10 border border-champagne/30 flex items-center justify-center text-champagne mb-4 group-hover:scale-110 transition-transform">
+              <i data-lucide="shield-check" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-sans font-bold text-ivory mb-2">Brand Approval 💯</h3>
+            <p class="text-xs font-mono text-ivory-muted leading-relaxed">
+              Guaranteed ungating and brand authorization on Amazon, Walmart, and TikTok Shop for top tier beauty, tech, and household brands.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-champagne tilt-elem-sm">
+            <span>100% Success Guarantee</span>
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- 8. Entity Formation -->
+        <div data-3d-card class="tilt-card p-7 rounded-2.5rem bg-card-bg/95 border border-champagne/40 hover:border-champagne transition-all duration-300 flex flex-col justify-between group bg-gradient-to-b from-card-bg to-[#1c1813] shadow-[0_15px_40px_rgba(201,168,76,0.15)] relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="tilt-elem-md">
+            <div class="w-10 h-10 rounded-2xl bg-champagne/20 border border-champagne flex items-center justify-center text-champagne mb-4 group-hover:scale-110 transition-transform">
+              <i data-lucide="landmark" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-sans font-bold text-champagne mb-2">USA LLC & UK Ltd Formation</h3>
+            <p class="text-xs font-mono text-ivory-muted leading-relaxed">
+              Complete corporate incorporation: Registered Agent, Articles of Organization, Official Business Address, and Federal EIN Tax ID.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-champagne/20 flex items-center justify-between text-[10px] font-mono text-champagne font-bold tilt-elem-sm">
+            <span>Full Legal Filing</span>
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- 9. Account Creation -->
+        <div data-3d-card class="tilt-card p-7 rounded-2.5rem bg-card-bg/90 border border-white/10 hover:border-champagne/40 transition-all duration-300 flex flex-col justify-between group shadow-xl relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="tilt-elem-md">
+            <div class="w-10 h-10 rounded-2xl bg-champagne/10 border border-champagne/30 flex items-center justify-center text-champagne mb-4 group-hover:scale-110 transition-transform">
+              <i data-lucide="user-plus" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-sans font-bold text-ivory mb-2">Marketplace Account Creation</h3>
+            <p class="text-xs font-mono text-ivory-muted leading-relaxed">
+              Clean, fully verified setup for <strong>eBay Seller, TikTok Shop Seller Center, Amazon & Walmart Seller</strong> with valid documents.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-champagne tilt-elem-sm">
+            <span>Fully Verified</span>
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- 10. Wise & Payoneer -->
+        <div data-3d-card class="tilt-card p-7 rounded-2.5rem bg-card-bg/90 border border-white/10 hover:border-champagne/40 transition-all duration-300 flex flex-col justify-between group shadow-xl relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="tilt-elem-md">
+            <div class="w-10 h-10 rounded-2xl bg-champagne/10 border border-champagne/30 flex items-center justify-center text-champagne mb-4 group-hover:scale-110 transition-transform">
+              <i data-lucide="credit-card" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-sans font-bold text-ivory mb-2">Wise & Payoneer Setup</h3>
+            <p class="text-xs font-mono text-ivory-muted leading-relaxed">
+              Business banking setup for international payouts. Receive USD, GBP, and EUR directly to your corporate business account without freezes.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-champagne tilt-elem-sm">
+            <span>Multi-Currency Rails</span>
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- 11. Wholesale Sourcing -->
+        <div data-3d-card class="tilt-card p-7 rounded-2.5rem bg-card-bg/90 border border-white/10 hover:border-champagne/40 transition-all duration-300 flex flex-col justify-between group shadow-xl relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="tilt-elem-md">
+            <div class="w-10 h-10 rounded-2xl bg-champagne/10 border border-champagne/30 flex items-center justify-center text-champagne mb-4 group-hover:scale-110 transition-transform">
+              <i data-lucide="boxes" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-sans font-bold text-ivory mb-2">Wholesale Product Sourcing</h3>
+            <p class="text-xs font-mono text-ivory-muted leading-relaxed">
+              Direct connection to authorized US/UK distributors. High profit-margin catalog, steady supply chains, and low minimum order quantities (MOQ).
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-champagne tilt-elem-sm">
+            <span>High ROI Catalogs</span>
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+        <!-- 12. Refunds Service -->
+        <div data-3d-card class="tilt-card p-7 rounded-2.5rem bg-card-bg/90 border border-white/10 hover:border-champagne/40 transition-all duration-300 flex flex-col justify-between group shadow-xl relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="tilt-elem-md">
+            <div class="w-10 h-10 rounded-2xl bg-champagne/10 border border-champagne/30 flex items-center justify-center text-champagne mb-4 group-hover:scale-110 transition-transform">
+              <i data-lucide="dollar-sign" class="w-5 h-5"></i>
+            </div>
+            <h3 class="text-lg font-sans font-bold text-ivory mb-2">Amazon, Walmart & TikTok Refunds</h3>
+            <p class="text-xs font-mono text-ivory-muted leading-relaxed">
+              Professional reimbursement recovery for lost inventory, damaged goods, customer concessions, and fee overcharges across all stores.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-champagne tilt-elem-sm">
+            <span>Maximum Recovery</span>
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          </div>
+        </div>
+
+      </div>
+      <div class="pt-8 border-t border-champagne/20 flex flex-col gap-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <div class="text-xs font-mono uppercase tracking-widest text-champagne mb-2">// DIGITAL CAPABILITIES</div>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-sans font-bold uppercase tracking-tight text-ivory"><span class="font-serif italic text-champagne">IT</span> Services</h2>
+          </div>
+          <p class="max-w-md text-sm text-ivory-muted leading-relaxed">Secure, crafted digital products that make your business more efficient, more visible and ready to scale.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div data-3d-card class="tilt-card p-7 rounded-2.5rem bg-card-bg/90 border border-champagne/40 group relative overflow-hidden"><div class="glare-effect"></div><i data-lucide="bot" class="w-7 h-7 text-champagne mb-4 tilt-elem-md"></i><h3 class="text-lg font-bold text-ivory mb-2 tilt-elem-md">AI Automation</h3><p class="text-xs font-mono text-ivory-muted leading-relaxed tilt-elem-md">Automate repetitive workflows so your team can move faster with fewer manual steps.</p></div>
+          <div data-3d-card class="tilt-card p-7 rounded-2.5rem bg-card-bg/90 border border-white/10 group relative overflow-hidden"><div class="glare-effect"></div><i data-lucide="messages-square" class="w-7 h-7 text-champagne mb-4 tilt-elem-md"></i><h3 class="text-lg font-bold text-ivory mb-2 tilt-elem-md">AI Tools &amp; Chatbots</h3><p class="text-xs font-mono text-ivory-muted leading-relaxed tilt-elem-md">Custom AI assistants and tools designed around your customers, data and daily operations.</p></div>
+          <div data-3d-card class="tilt-card p-7 rounded-2.5rem bg-card-bg/90 border border-white/10 group relative overflow-hidden"><div class="glare-effect"></div><i data-lucide="box" class="w-7 h-7 text-champagne mb-4 tilt-elem-md"></i><h3 class="text-lg font-bold text-ivory mb-2 tilt-elem-md">3D Websites</h3><p class="text-xs font-mono text-ivory-muted leading-relaxed tilt-elem-md">Immersive 3D web experiences that make a premium first impression.</p></div>
+          <div data-3d-card class="tilt-card p-7 rounded-2.5rem bg-card-bg/90 border border-white/10 group relative overflow-hidden"><div class="glare-effect"></div><i data-lucide="layout-template" class="w-7 h-7 text-champagne mb-4 tilt-elem-md"></i><h3 class="text-lg font-bold text-ivory mb-2 tilt-elem-md">Portfolio &amp; Business Websites</h3><p class="text-xs font-mono text-ivory-muted leading-relaxed tilt-elem-md">Simple, portfolio and luxury websites built to explain your value and convert visitors.</p></div>
+          <div data-3d-card class="tilt-card p-7 rounded-2.5rem bg-card-bg/90 border border-white/10 group relative overflow-hidden"><div class="glare-effect"></div><i data-lucide="smartphone" class="w-7 h-7 text-champagne mb-4 tilt-elem-md"></i><h3 class="text-lg font-bold text-ivory mb-2 tilt-elem-md">Android &amp; iOS Apps</h3><p class="text-xs font-mono text-ivory-muted leading-relaxed tilt-elem-md">Mobile apps for Android and the App Store, designed for real users and reliable releases.</p></div>
+          <div data-3d-card class="tilt-card p-7 rounded-2.5rem bg-card-bg/90 border border-white/10 group relative overflow-hidden"><div class="glare-effect"></div><i data-lucide="monitor-cog" class="w-7 h-7 text-champagne mb-4 tilt-elem-md"></i><h3 class="text-lg font-bold text-ivory mb-2 tilt-elem-md">POS &amp; Custom Software</h3><p class="text-xs font-mono text-ivory-muted leading-relaxed tilt-elem-md">POS systems, web scrapers and desktop software tailored to your exact workflow.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== C. WHY CHOOSE US ==================== -->
+  <section id="artifacts" class="home-detail relative py-28 px-6 md:px-16 lg:px-24 bg-[#0a0a0f]/85 backdrop-blur-md border-t border-white/5 z-10">
+    <div class="max-w-7xl mx-auto flex flex-col gap-16">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
+        <div>
+          <div id="skills" class="text-xs font-mono uppercase tracking-widest text-champagne mb-2">// WHY CHOOSE US</div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-sans font-bold uppercase tracking-tight text-ivory">
+            Built for <span class="font-serif italic text-champagne">sustainable growth</span>
+          </h2>
+        </div>
+        <p class="max-w-md text-sm text-ivory-muted font-normal leading-relaxed">
+          Explore the standards behind our virtual assistant, inventory and IT services. Open a card to read our approach.
+        </p>
+      </div>
+
+      <!-- 3 Micro-UI Functional Cards (3D Tilt) -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+        
+        <!-- CARD 1: "Diagnostic Shuffler" -->
+        <div data-3d-card class="tilt-card feature-card bg-card-bg/95 rounded-3rem p-7 border border-white/10 shadow-2xl flex flex-col justify-between relative overflow-hidden group hover:border-champagne/40 transition-all duration-500">
+          <div class="glare-effect"></div>
+          <div class="flex items-center justify-between pb-4 border-b border-white/10 tilt-elem-sm">
+            <div class="flex items-center gap-2.5">
+              <div class="w-2.5 h-2.5 rounded-full bg-champagne"></div>
+              <span class="text-xs font-mono uppercase tracking-wider text-ivory font-semibold">Virtual Assistant</span>
+            </div>
+            <button id="manual-shuffle-btn" class="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded-full border border-champagne/40 text-champagne hover:bg-champagne hover:text-obsidian transition-colors flex items-center gap-1">
+              <span>Our approach</span>
+            </button>
+          </div>
+
+          <!-- Micro-UI Interactive Stage -->
+          <div class="my-8 relative h-64 w-full flex items-center justify-center tilt-elem-md">
+            <div id="shuffler-stage" class="relative w-full h-full">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <div class="tilt-elem-sm">
+            <h3 class="text-lg font-sans font-bold text-ivory mb-1">Strategy-led account care</h3>
+            <p class="text-xs text-ivory-muted leading-relaxed">
+              A trained team supports marketplace operations with careful, platform-aware growth—not uncontrolled volume.
+            </p>
+            <details class="mt-4 text-xs text-ivory-muted leading-relaxed"><summary class="cursor-pointer text-champagne font-mono uppercase tracking-wider">Read philosophy</summary><p class="pt-3">With six years of practical marketplace experience, our team protects account health through measured, platform-aware strategy. We focus on responsive support, clear reporting and growth plans aligned to each account’s strength.</p></details>
+          </div>
+        </div>
+
+        <!-- CARD 2: "Telemetry Typewriter" -->
+        <div data-3d-card class="tilt-card feature-card bg-card-bg/95 rounded-3rem p-7 border border-white/10 shadow-2xl flex flex-col justify-between relative overflow-hidden group hover:border-champagne/40 transition-all duration-500">
+          <div class="glare-effect"></div>
+          <div class="flex items-center justify-between pb-4 border-b border-white/10 tilt-elem-sm">
+            <div class="flex items-center gap-2">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+              </span>
+              <span class="text-xs font-mono uppercase tracking-wider text-ivory font-semibold">USA Inventory</span>
+            </div>
+            <span class="text-[10px] font-mono tracking-widest text-emerald-400/90 uppercase bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/50">QUALITY FIRST</span>
+          </div>
+
+          <!-- Micro-UI Typewriter Console Stage -->
+          <div class="my-8 h-64 rounded-2rem bg-obsidian p-5 border border-white/10 font-mono text-xs flex flex-col justify-between shadow-inner overflow-hidden tilt-elem-md">
+            <div class="flex items-center justify-between pb-3 border-b border-white/5 text-[10px] text-ivory-muted">
+              <span>HUB: US-EAST-LOGISTICS</span>
+              <span id="telemetry-timestamp">00:00:00 UTC</span>
+            </div>
+            
+            <div class="flex-1 py-3 flex flex-col justify-center">
+              <div class="text-champagne-light text-[11px] font-mono tracking-wide leading-relaxed min-h-[4.5rem]">
+                <span id="typewriter-text" class="text-ivory"></span><span class="typewriter-cursor text-champagne font-bold text-sm">_</span>
+              </div>
+            </div>
+
+            <!-- Mini Telemetry Metrics Footer -->
+            <div class="pt-3 border-t border-white/5 grid grid-cols-3 gap-2 text-[9px] font-mono text-ivory-muted">
+              <div>DISPATCH: <span class="text-ivory">1,420 pkgs</span></div>
+              <div>USPS RATE: <span class="text-ivory">99.8%</span></div>
+              <div>VA HEALTH: <span class="text-emerald-400">OPTIMAL</span></div>
+            </div>
+          </div>
+
+          <div class="tilt-elem-sm">
+            <h3 class="text-lg font-sans font-bold text-ivory mb-1">Ready-to-ship inventory</h3>
+            <p class="text-xs text-ivory-muted leading-relaxed">
+              A+ and standard-quality stock selected to support reliable customer experiences and lower return risk.
+            </p>
+            <details class="mt-4 text-xs text-ivory-muted leading-relaxed"><summary class="cursor-pointer text-champagne font-mono uppercase tracking-wider">Read philosophy</summary><p class="pt-3">For five years, we have focused on inventory that is honestly represented and ready to move. We offer A+ and standard options with the goal of reducing returns, protecting customer satisfaction and helping sellers find products with real demand.</p></details>
+          </div>
+        </div>
+
+        <!-- CARD 3: "Cursor Protocol Scheduler" -->
+        <div data-3d-card class="tilt-card feature-card bg-card-bg/95 rounded-3rem p-7 border border-white/10 shadow-2xl flex flex-col justify-between relative overflow-hidden group hover:border-champagne/40 transition-all duration-500">
+          <div class="glare-effect"></div>
+          <div class="flex items-center justify-between pb-4 border-b border-white/10 tilt-elem-sm">
+            <div class="flex items-center gap-2.5">
+              <div class="w-2.5 h-2.5 rounded-full bg-champagne"></div>
+              <span class="text-xs font-mono uppercase tracking-wider text-ivory font-semibold">IT Services</span>
+            </div>
+            <span class="text-[10px] font-mono tracking-widest text-champagne bg-champagne/10 px-2 py-0.5 rounded border border-champagne/30 uppercase">CRAFTED CODE</span>
+          </div>
+
+          <!-- Micro-UI Scheduler Stage -->
+          <div id="scheduler-stage" class="my-8 h-64 rounded-2rem bg-obsidian p-5 border border-white/10 flex flex-col justify-between relative overflow-hidden select-none tilt-elem-md">
+            <div class="flex items-center justify-between text-[11px] font-mono">
+              <span class="text-ivory font-semibold">INVENTORY DISPATCH CYCLE</span>
+              <span class="text-champagne font-mono text-[10px]">SCHEDULED: <span id="scheduler-active-day">WED</span></span>
+            </div>
+
+            <!-- Day Cells (S M T W T F S) -->
+            <div class="grid grid-cols-7 gap-1.5 py-3">
+              <div class="day-cell flex flex-col items-center justify-center py-2.5 rounded-xl border border-white/10 bg-white/[0.02] text-xs font-mono transition-all" data-day="S">
+                <span class="text-[9px] text-ivory-muted">S</span><span class="font-bold mt-1 text-[11px]">06</span>
+              </div>
+              <div class="day-cell flex flex-col items-center justify-center py-2.5 rounded-xl border border-white/10 bg-white/[0.02] text-xs font-mono transition-all" data-day="M">
+                <span class="text-[9px] text-ivory-muted">M</span><span class="font-bold mt-1 text-[11px]">07</span>
+              </div>
+              <div class="day-cell flex flex-col items-center justify-center py-2.5 rounded-xl border border-white/10 bg-white/[0.02] text-xs font-mono transition-all" data-day="T">
+                <span class="text-[9px] text-ivory-muted">T</span><span class="font-bold mt-1 text-[11px]">08</span>
+              </div>
+              <div id="target-day-wed" class="day-cell flex flex-col items-center justify-center py-2.5 rounded-xl border border-white/10 bg-white/[0.02] text-xs font-mono transition-all" data-day="W">
+                <span class="text-[9px] text-ivory-muted">W</span><span class="font-bold mt-1 text-[11px]">09</span>
+              </div>
+              <div class="day-cell flex flex-col items-center justify-center py-2.5 rounded-xl border border-white/10 bg-white/[0.02] text-xs font-mono transition-all" data-day="T">
+                <span class="text-[9px] text-ivory-muted">T</span><span class="font-bold mt-1 text-[11px]">10</span>
+              </div>
+              <div class="day-cell flex flex-col items-center justify-center py-2.5 rounded-xl border border-white/10 bg-white/[0.02] text-xs font-mono transition-all" data-day="F">
+                <span class="text-[9px] text-ivory-muted">F</span><span class="font-bold mt-1 text-[11px]">11</span>
+              </div>
+              <div class="day-cell flex flex-col items-center justify-center py-2.5 rounded-xl border border-white/10 bg-white/[0.02] text-xs font-mono transition-all" data-day="S">
+                <span class="text-[9px] text-ivory-muted">S</span><span class="font-bold mt-1 text-[11px]">12</span>
+              </div>
+            </div>
+
+            <!-- Scheduler Action Bar with Save Button -->
+            <div class="flex items-center justify-between pt-2 border-t border-white/5">
+              <div class="text-[10px] font-mono text-ivory-muted flex items-center gap-1.5">
+                <div class="w-1.5 h-1.5 rounded-full bg-champagne"></div>
+                <span id="scheduler-status-text">Ready for dispatch</span>
+              </div>
+              <button id="target-save-btn" class="px-3 py-1 rounded-lg border border-champagne/40 bg-champagne/10 text-champagne text-[10px] font-mono uppercase tracking-wider font-semibold transition-all">
+                Book Warehouse Slot
+              </button>
+            </div>
+
+            <!-- Simulated SVG Cursor -->
+            <div id="simulated-cursor" class="absolute pointer-events-none z-30 transition-transform ease-out" style="top: 20px; left: 20px;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="drop-shadow-[0_4px_12px_rgba(201,168,76,0.6)]">
+                <path d="M4 4L10.5 20L13.5 13.5L20 10.5L4 4Z" fill="#C9A84C" stroke="#0D0D12" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="tilt-elem-sm">
+            <h3 class="text-lg font-sans font-bold text-ivory mb-1">Professional software delivery</h3>
+            <p class="text-xs text-ivory-muted leading-relaxed">
+              Purpose-built websites, apps and software developed with engineering judgement and AI-assisted efficiency.
+            </p>
+            <details class="mt-4 text-xs text-ivory-muted leading-relaxed"><summary class="cursor-pointer text-champagne font-mono uppercase tracking-wider">Read philosophy</summary><p class="pt-3">We do not hand over unreviewed AI output. Our team uses AI as a productive tool, while engineers shape, test and refine the code so the final website, app or software is dependable and genuinely tailored to your business.</p></details>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== D. PHILOSOPHY: "The Manifesto" ==================== -->
+  <section id="about" class="home-detail relative py-28 px-6 md:px-16 lg:px-24 bg-[#09090D]/65 backdrop-blur-md overflow-hidden z-10">
+    <div class="relative z-10 max-w-5xl mx-auto flex flex-col gap-12">
+      <!-- Eyebrow -->
+      <div class="flex items-center gap-3">
+        <span class="h-[1px] w-8 bg-champagne"></span>
+        <span id="experience" class="text-xs font-mono uppercase tracking-widest text-champagne">OUR PHILOSOPHY</span>
+      </div>
+
+      <!-- Contrasting Statement 1: Common Approach (Neutral, Smaller) -->
+      <div class="manifesto-block flex flex-col gap-3">
+        <span class="text-xs font-mono uppercase tracking-widest text-ivory-muted">Market Reality //</span>
+        <p class="text-xl sm:text-2xl md:text-3xl font-sans text-ivory-muted/80 font-normal leading-relaxed">
+          We believe sustainable results come from disciplined execution: <span class="text-ivory">real operational knowledge, reliable inventory and thoughtfully built technology.</span>
+        </p>
+      </div>
+
+      <div class="w-full h-[1px] bg-white/10 my-4"></div>
+
+      <!-- Contrasting Statement 2: Differentiated Approach (Massive Drama Serif Italic) -->
+      <div class="manifesto-block flex flex-col gap-4">
+        <span class="text-xs font-mono uppercase tracking-widest text-champagne font-semibold">How we work //</span>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-sans font-semibold text-ivory leading-relaxed">
+          We combine <span class="text-champagne">e-commerce expertise</span>, careful quality control and <span class="text-champagne">hands-on software engineering</span> to help businesses grow with confidence.
+        </h2>
+      </div>
+
+      <!-- Principle Pillars (3D Tilt) -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8">
+        <div data-3d-card class="tilt-card p-6 rounded-2rem border border-white/5 bg-white/[0.02] shadow-xl relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="tilt-elem-sm text-sm font-mono text-champagne mb-2">01 / VIRTUAL ASSISTANT</div>
+          <p class="tilt-elem-sm text-xs text-ivory-muted leading-relaxed">
+            Our expert team supports eBay, Walmart, TikTok Shop, Etsy and Temu with account-aware strategy, responsive communication and a focus on long-term ROI—not reckless volume.
+          </p>
+        </div>
+        <div data-3d-card class="tilt-card p-6 rounded-2rem border border-white/5 bg-white/[0.02] shadow-xl relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="tilt-elem-sm text-sm font-mono text-champagne mb-2">02 / READY INVENTORY</div>
+          <p class="tilt-elem-sm text-xs text-ivory-muted leading-relaxed">
+            We offer ready-to-ship USA and UK inventory in A+ and standard quality. Honest product selection helps reduce returns and supports healthier growth.
+          </p>
+        </div>
+        <div data-3d-card class="tilt-card p-6 rounded-2rem border border-white/5 bg-white/[0.02] shadow-xl relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="tilt-elem-sm text-sm font-mono text-champagne mb-2">03 / IT ENGINEERING</div>
+          <p class="tilt-elem-sm text-xs text-ivory-muted leading-relaxed">
+            We engineer websites, apps, AI automation and custom software with human review, intentional coding and testing—not one-click, unverified AI output.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== F. SERVICE PACKAGES / PRICING (3D TILT) ==================== -->
+  <section id="packages" class="hidden" aria-hidden="true">
+    <div class="max-w-7xl mx-auto flex flex-col gap-16">
+      
+      <!-- Header -->
+      <div class="text-center max-w-3xl mx-auto flex flex-col items-center gap-4">
+        <div class="text-xs font-mono uppercase tracking-widest text-champagne">// PARTNERSHIP PACKAGES</div>
+        <h2 class="text-3xl sm:text-5xl font-sans font-bold uppercase tracking-tight text-ivory">
+          Choose Your <span class="font-serif italic text-champagne">Growth Tier</span>
+        </h2>
+        <p class="text-sm sm:text-base text-ivory-muted font-normal leading-relaxed">
+          Whether you need a rock-solid business setup or complete hands-off marketplace management, we have the right package ready.
+        </p>
+      </div>
+
+      <!-- 3-Tier Grid with Middle Card Pop and 3D Tilt -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+        
+        <!-- TIER 1: Entity & Account Foundation -->
+        <div data-3d-card class="tilt-card rounded-3rem bg-card-bg/95 p-8 sm:p-10 border border-white/10 flex flex-col justify-between h-full hover:border-white/20 transition-all duration-300 shadow-xl relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="tilt-elem-md">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono uppercase tracking-widest text-ivory-muted">TIER 01</span>
+              <span class="text-xs font-mono text-ivory-muted">ONE-TIME SETUP</span>
+            </div>
+            <h3 class="text-2xl font-sans font-bold text-ivory mb-2">Entity & Account Setup</h3>
+            <p class="text-xs text-ivory-muted mb-6 leading-relaxed">
+              Complete corporate legal foundation in USA or UK. Everything needed to start selling internationally without banking roadblocks.
+            </p>
+            <div class="text-2xl font-mono font-bold text-ivory mb-6">Custom Quote <span class="text-xs font-mono text-ivory-muted font-normal">/ based on state</span></div>
+            
+            <ul class="space-y-3 border-t border-white/10 pt-6 text-xs font-mono text-ivory-muted">
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-champagne"></i>
+                <span>USA LLC / UK Ltd official registration</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-champagne"></i>
+                <span>EIN / Tax ID & Registered Agent</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-champagne"></i>
+                <span>Wise & Payoneer Business Banking</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-champagne"></i>
+                <span>eBay / TikTok / Amazon verified store</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="https://wa.me/923704443223?text=Hello%20Sahil,%20I%20am%20interested%20in%20Entity%20and%20Account%20Setup" target="_blank" rel="noopener noreferrer" class="magnetic-btn mt-8 w-full py-3.5 rounded-full border border-white/20 text-ivory font-mono text-xs uppercase tracking-wider font-semibold hover:border-champagne hover:text-champagne transition-all text-center tilt-elem-sm">
+            Inquire Setup on WhatsApp
+          </a>
+        </div>
+
+        <!-- TIER 2: Full-Stack E-Commerce Retainer (POPS: Most Popular) -->
+        <div data-3d-card class="tilt-card rounded-3rem bg-[#151522]/95 p-8 sm:p-11 border-2 border-champagne shadow-[0_20px_60px_rgba(201,168,76,0.3)] flex flex-col justify-between h-full relative transform lg:-translate-y-2 overflow-hidden">
+          <div class="glare-effect"></div>
+          <!-- Featured Badge -->
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-champagne text-obsidian text-[10px] font-mono uppercase tracking-widest font-bold shadow-lg tilt-elem-lg">
+            MOST POPULAR • FULL MANAGEMENT
+          </div>
+
+          <div class="tilt-elem-md">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono uppercase tracking-widest text-champagne font-bold">TIER 02</span>
+              <span class="text-xs font-mono text-champagne bg-champagne/10 px-2 py-0.5 rounded">MONTHLY RETAINER</span>
+            </div>
+            <h3 class="text-3xl font-sans font-bold text-ivory mb-2">Complete Store Management</h3>
+            <p class="text-xs text-ivory-muted mb-6 leading-relaxed">
+              Full-service Virtual Assistant handling your eBay, Walmart, or TikTok Shop daily operations with ready-to-ship USA inventory access.
+            </p>
+            <div class="text-3xl font-mono font-bold text-champagne mb-6">Full Retainer <span class="text-xs font-mono text-ivory-muted font-normal">/ monthly VA</span></div>
+            
+            <ul class="space-y-3.5 border-t border-white/10 pt-6 text-xs font-mono text-ivory">
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check-circle" class="w-4 h-4 text-champagne"></i>
+                <span>Dedicated full-time E-Commerce VA</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check-circle" class="w-4 h-4 text-champagne"></i>
+                <span>Direct access to USA & UK ready inventory</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check-circle" class="w-4 h-4 text-champagne"></i>
+                <span>USPS Priority labels & valid real tracking</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check-circle" class="w-4 h-4 text-champagne"></i>
+                <span>Brand approvals & valid invoice creation</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check-circle" class="w-4 h-4 text-champagne"></i>
+                <span>Amazon, Walmart & TikTok refunds recovery</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="https://wa.me/923704443223?text=Hello%20Sahil,%20I%20want%20Complete%20Store%20Management%20with%20VA%20and%20Ready%20Inventory" target="_blank" rel="noopener noreferrer" class="magnetic-btn group relative overflow-hidden mt-8 w-full py-4 rounded-full bg-champagne text-obsidian font-mono text-xs uppercase tracking-wider font-bold border border-champagne transition-all shadow-[0_10px_25px_rgba(201,168,76,0.35)] flex items-center justify-center gap-2 tilt-elem-sm">
+            <span class="relative z-10 flex items-center justify-center gap-2 transition-colors group-hover:text-champagne">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              <span>Book Retainer on WhatsApp</span>
+            </span>
+            <span class="btn-slide-bg bg-obsidian"></span>
+          </a>
+        </div>
+
+        <!-- TIER 3: Wholesale Inventory & Refunds -->
+        <div data-3d-card class="tilt-card rounded-3rem bg-card-bg/95 p-8 sm:p-10 border border-white/10 flex flex-col justify-between h-full hover:border-white/20 transition-all duration-300 shadow-xl relative overflow-hidden">
+          <div class="glare-effect"></div>
+          <div class="tilt-elem-md">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono uppercase tracking-widest text-ivory-muted">TIER 03</span>
+              <span class="text-xs font-mono text-ivory-muted">VOLUME WHOLESALE</span>
+            </div>
+            <h3 class="text-2xl font-sans font-bold text-ivory mb-2">Wholesale Stock & Refunds</h3>
+            <p class="text-xs text-ivory-muted mb-6 leading-relaxed">
+              For volume sellers and 7-figure brands seeking bulk ready stock, continuous reimbursement recovery, and dedicated high-speed VPS servers.
+            </p>
+            <div class="text-2xl font-mono font-bold text-ivory mb-6">Wholesale <span class="text-xs font-mono text-ivory-muted font-normal">/ commission hybrid</span></div>
+            
+            <ul class="space-y-3 border-t border-white/10 pt-6 text-xs font-mono text-ivory-muted">
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-champagne"></i>
+                <span>Bulk wholesale catalog with priority booking</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-champagne"></i>
+                <span>Full Amazon/Walmart reimbursement audit</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-champagne"></i>
+                <span>Dedicated clean residential IP VPS</span>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <i data-lucide="check" class="w-4 h-4 text-champagne"></i>
+                <span>Direct 1-on-1 line with Sahil Gulfam</span>
+              </li>
+            </ul>
+          </div>
+
+          <a href="https://wa.me/923704443223?text=Hello%20Sahil,%20I%20am%20interested%20in%20Bulk%20Wholesale%20and%20Refunds%20partnership" target="_blank" rel="noopener noreferrer" class="magnetic-btn mt-8 w-full py-3.5 rounded-full border border-white/20 text-ivory font-mono text-xs uppercase tracking-wider font-semibold hover:border-champagne hover:text-champagne transition-all text-center tilt-elem-sm">
+            Partner with Sahil
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== G. FOOTER ==================== -->
+  <footer id="contact" class="relative bg-[#07070A]/65 backdrop-blur-md rounded-t-[4rem] border-t border-white/10 pt-20 pb-12 px-6 md:px-16 lg:px-24 overflow-hidden z-10">
+    <div class="max-w-7xl mx-auto flex flex-col gap-16">
+      
+      <!-- Top Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+        
+        <!-- Brand / Identity Column -->
+        <div class="md:col-span-5 flex flex-col gap-6">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full border border-champagne bg-champagne/10 overflow-hidden shadow-[0_0_15px_rgba(201,168,76,0.3)]">
+              <img src="./sahil-gulfam.png" alt="Sahil Gulfam" class="w-full h-full object-cover object-top">
+            </div>
+            <div>
+              <span class="text-base font-mono font-bold tracking-wider text-ivory block">SAHIL SOFT</span>
+              <span class="text-[10px] font-mono text-champagne">E-COMMERCE &amp; IT SERVICES</span>
+            </div>
+          </div>
+          <p class="text-sm text-ivory-muted max-w-md leading-relaxed">
+            Founded by <strong>Sahil Gulfam</strong>. Providing full-scale e-commerce acceleration, USA/UK ready-to-ship inventory, marketplace account management, and corporate business formation worldwide.
+          </p>
+          
+          <!-- System Operational Status Indicator -->
+          <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-emerald-500/30 bg-emerald-950/40 w-fit">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+            </span>
+            <span class="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold">
+              For freelance & contract work <span class="text-white/40">//</span> WHATSAPP ACTIVES
+            </span>
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="md:col-span-3 flex flex-col gap-4">
+          <span class="text-xs font-mono uppercase tracking-widest text-champagne font-semibold">// SECTIONS</span>
+          <div class="flex flex-col gap-2.5 text-xs font-mono text-ivory-muted">
+            <a href="#hero" class="hover:text-champagne transition-colors">01. Home</a>
+            <a href="#about" class="hover:text-champagne transition-colors">02. About &amp; Philosophy</a>
+            <a href="#services" class="hover:text-champagne transition-colors">03. E-commerce &amp; IT Services</a>
+            <a href="#inventory" class="hover:text-champagne transition-colors">04. USA &amp; UK Inventory</a>
+            <a href="#contact" class="hover:text-champagne transition-colors">05. Contact</a>
+          </div>
+        </div>
+
+        <!-- Direct Contact & Live Communities -->
+        <div class="md:col-span-4 flex flex-col gap-4">
+          <span class="text-xs font-mono uppercase tracking-widest text-champagne font-semibold">// DIRECT CONTACT & CHANNELS</span>
+          <div class="flex flex-col gap-3 text-xs font-mono text-ivory-muted">
+            <a href="https://wa.me/923704443223" target="_blank" rel="noopener noreferrer" class="hover:text-champagne transition-colors flex items-center gap-2 text-ivory font-semibold">
+              <i data-lucide="phone" class="w-4 h-4 text-champagne"></i>
+              <span>+92 370 4443223 (Call / WhatsApp)</span>
+            </a>
+            <a href="mailto:sahilsoftpk@gmail.com" class="hover:text-champagne transition-colors flex items-center gap-2">
+              <i data-lucide="mail" class="w-4 h-4 text-champagne"></i>
+              <span>sahilsoftpk@gmail.com</span>
+            </a>
+            <a href="https://docs.google.com/spreadsheets/d/1SwU6JguEKflX6APbEAJDp5er2j0IICl3e0Gcm_dxNsA/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="hover:text-champagne transition-colors flex items-center gap-2 text-champagne">
+              <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
+              <span>USA & UK Master Stock Spreadsheet</span>
+            </a>
+            <a href="https://chat.whatsapp.com/L559BTDCm6J0y7zYYCxquf" target="_blank" rel="noopener noreferrer" class="hover:text-champagne transition-colors flex items-center gap-2">
+              <i data-lucide="users" class="w-4 h-4 text-emerald-400"></i>
+              <span>Join USA 🇺🇸 Inventory Group</span>
+            </a>
+            <a href="https://chat.whatsapp.com/DI74ZlTEhRjAI8n4OhMgO8" target="_blank" rel="noopener noreferrer" class="hover:text-champagne transition-colors flex items-center gap-2">
+              <i data-lucide="users" class="w-4 h-4 text-blue-400"></i>
+              <span>Join UK 🇬🇧 Inventory Group</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-ivory-muted">
+        <div>
+          © 2021 Sahil Soft (Sahil Gulfam). All Rights Reserved. Powering your e-commerce success!
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="https://wa.me/923704443223" target="_blank" rel="noopener noreferrer" class="text-champagne hover:underline">
+            Quick Connect: +92 370 4443223
+          </a>
+          <a href="#hero" class="hover:text-champagne transition-colors flex items-center gap-1">
+            <span>Back to Summit</span>
+            <i data-lucide="arrow-up" class="w-3 h-3"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Quick Button -->
+  <a href="https://wa.me/923704443223" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 left-6 z-50 flex items-center gap-2.5 px-5 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-obsidian font-mono text-xs uppercase font-bold shadow-[0_10px_25px_rgba(16,185,129,0.4)] transition-all hover:scale-105" aria-label="Direct WhatsApp Message">
+    <i data-lucide="message-circle" class="w-4 h-4 text-obsidian"></i>
+    <span>Chat with Sahil</span>
+  </a>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- Main JavaScript File -->
+  <script src="./app.js"></script>
+</body>
+</html>
